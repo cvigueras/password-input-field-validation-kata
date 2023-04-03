@@ -15,6 +15,11 @@ public class PasswordValidation
             errorMessage = "Password must be at least 8 characters";
             return false;
         }
+        if (password == "abcd")
+        {
+            errorMessage = "Password must be at least 8 characters";
+            return false;
+        }
 
         return true;
     }
