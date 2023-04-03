@@ -24,7 +24,7 @@ public class Password
 
     public bool CheckHasEspecialCharacter()
     {
-        var regex = new Regex("[^a-zA-Z0-9]{1,}");
+        var regex = new Regex(RegexExpressions.RegexSpecialCharacters);
         if (!string.IsNullOrEmpty(Value) && regex.IsMatch(Value)) return true;
         SetErrorMessage(ErrorMessages.NotSpecialCharacters);
         return PasswordIsValid;
@@ -32,7 +32,7 @@ public class Password
 
     public bool CheckHasCapitalLetter()
     {
-        var regex = new Regex("[A-Z]{1,}");
+        var regex = new Regex(RegexExpressions.RegexCapitalLetter);
         if (!string.IsNullOrEmpty(Value) && regex.IsMatch(Value)) return true;
         SetErrorMessage(ErrorMessages.NoCapitalLetters);
         return PasswordIsValid;
@@ -47,7 +47,7 @@ public class Password
 
     public bool CheckHasAtLeastTwoNumbers()
     {
-        var regex = new Regex(@"(\D*\d){2,}");
+        var regex = new Regex(RegexExpressions.RegexTwoNumbers);
         if (!string.IsNullOrEmpty(Value) && regex.IsMatch(Value)) return true;
         SetErrorMessage(ErrorMessages.NotContainsTwoDigit);
         return PasswordIsValid;
