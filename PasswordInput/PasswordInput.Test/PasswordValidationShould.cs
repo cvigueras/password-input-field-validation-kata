@@ -20,7 +20,7 @@ namespace PasswordInput.Test
             var errorMessage = string.Empty;
             var result = passwordValidation.CheckConditions(input, ref errorMessage);
 
-            errorMessage.Should().Be("Password must be at least 8 characters\nThe password must contain at least 2 numbers\nPassword must contain at least one capital letter");
+            errorMessage.Should().Be("Password must be at least 8 characters\nThe password must contain at least 2 numbers\nPassword must contain at least one capital letter\nPassword must contain at least one special character");
             result.Should().Be(false);
         }
 
@@ -34,7 +34,7 @@ namespace PasswordInput.Test
             var errorMessage = string.Empty;
             var result = passwordValidation.CheckConditions(input, ref errorMessage);
 
-            errorMessage.Should().Be("The password must contain at least 2 numbers\nPassword must contain at least one capital letter");
+            errorMessage.Should().Be("The password must contain at least 2 numbers\nPassword must contain at least one capital letter\nPassword must contain at least one special character");
             result.Should().Be(false);
         }
 
@@ -48,7 +48,7 @@ namespace PasswordInput.Test
             var errorMessage = string.Empty;
             var result = passwordValidation.CheckConditions(input, ref errorMessage);
 
-            errorMessage.Should().Be("Password must contain at least one capital letter");
+            errorMessage.Should().Be("Password must contain at least one capital letter\nPassword must contain at least one special character");
             result.Should().Be(false);
         }
 
@@ -70,7 +70,7 @@ namespace PasswordInput.Test
             var passwordValidation = new PasswordValidation();
 
             var errorMessage = string.Empty;
-            var result = passwordValidation.CheckConditions("hGf42adjb#", ref errorMessage);
+            var result = passwordValidation.CheckConditions("hGf42adjb", ref errorMessage);
 
             errorMessage.Should().Be("Password must contain at least one special character");
             result.Should().Be(false);
@@ -82,7 +82,7 @@ namespace PasswordInput.Test
             var passwordValidation = new PasswordValidation();
 
             var errorMessage = string.Empty;
-            var result = passwordValidation.CheckConditions("ffKaa9sl^@#3", ref errorMessage);
+            var result = passwordValidation.CheckConditions("ffKaa9sl3", ref errorMessage);
 
             errorMessage.Should().Be("Password must contain at least one special character");
             result.Should().Be(false);

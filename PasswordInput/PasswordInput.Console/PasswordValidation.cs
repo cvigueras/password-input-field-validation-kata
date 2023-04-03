@@ -10,22 +10,23 @@ public class PasswordValidation
         bool hasConditions = CheckHasLength(password, ref errorMessage);
         hasConditions = CheckHasAtLeastTwoNumbers(password, ref errorMessage);
         hasConditions = CheckHasCapitalLetter(password, ref errorMessage);
-        if (password == "hGf3ya7nb")
-        {
-            errorMessage = "Password must contain at least one special character";
-            return false;
-        }
-        if (password == "hGf42adjb#")
-        {
-            errorMessage = "Password must contain at least one special character";
-            return false;
-        }
-        if (password == "ffKaa9sl^@#3")
-        {
-            errorMessage = "Password must contain at least one special character";
-            return false;
-        }
+        hasConditions = CheckHasEspecialCharacter(password, ref errorMessage);
         return hasConditions;
+    }
+
+    private static bool CheckHasEspecialCharacter(string password, ref string errorMessage)
+    {
+        var regex = new Regex("[^a-zA-Z0-9]{1,}");
+        if (string.IsNullOrEmpty(password) || !regex.IsMatch(password))
+        {
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                errorMessage += "\n";
+            }
+            errorMessage += "Password must contain at least one special character";
+            return false;
+        }
+        return true;
     }
 
     private static bool CheckHasCapitalLetter(string password, ref string errorMessage)
@@ -55,7 +56,7 @@ public class PasswordValidation
 
     private static bool CheckHasAtLeastTwoNumbers(string password, ref string errorMessage)
     {
-        var regex = new Regex("^(?=(?:\\D*\\d){2})[a-zA-Z0-9]*$");
+        var regex = new Regex(@"(\D*\d){2,}");
         if (string.IsNullOrEmpty(password) || !regex.IsMatch(password))
         {
             if (!string.IsNullOrEmpty(errorMessage))
