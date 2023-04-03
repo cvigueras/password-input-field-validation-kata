@@ -65,5 +65,20 @@ namespace PasswordInput.Test
             errorMessage.Should().Be("Password must contain at least one special character");
             result.Should().Be(false);
         }
+
+        [TestCase("Hola33Comoestas^")]
+        [TestCase("hAZg3mj4@.hja")]
+        [TestCase("hy5g6*J9")]
+        [TestCase("hyT90kL##77k3@")]
+        public void get_error_message_empty_when_password_achieve_all_conditions(string input)
+        {
+            var passwordValidation = new PasswordValidation();
+
+            var errorMessage = string.Empty;
+            var result = passwordValidation.CheckConditions(input, ref errorMessage);
+
+            errorMessage.Should().Be("");
+            result.Should().Be(true);
+        }
     }
 }
