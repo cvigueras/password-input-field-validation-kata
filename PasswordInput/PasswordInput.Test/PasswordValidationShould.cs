@@ -13,7 +13,7 @@ namespace PasswordInput.Test
         [TestCase(null)]
         [TestCase("")]
         [TestCase("abcd")]
-        public void get_error_message_and_false_when_password_is_less_than_eight_character(string input)
+        public void get_all_errors_messages_when_does_not_meet_any_condition(string input)
         {
             var passwordValidation = new PasswordValidation();
 
@@ -38,41 +38,18 @@ namespace PasswordInput.Test
             result.Should().Be(false);
         }
 
-        [Test]
-        public void get_error_message_and_false_when_password_not_contains_a_capital_letter()
+        [TestCase("hgf3ya7nb")]
+        [TestCase("hk2dddya7zs")]
+        [TestCase("gbaf6hja9lkahjabva")]
+        public void get_error_message_and_false_when_password_not_contains_a_capital_letter(string input)
         {
             var passwordValidation = new PasswordValidation();
 
             var errorMessage = string.Empty;
-            var result = passwordValidation.CheckConditions("hgf3ya7nb", ref errorMessage);
+            var result = passwordValidation.CheckConditions(input, ref errorMessage);
 
             errorMessage.Should().Be("Password must contain at least one capital letter");
             result.Should().Be(false);
         }
-
-        [Test]
-        public void get_error_message_and_false_when_password_not_contains_a_capital_letter_with_other_string()
-        {
-            var passwordValidation = new PasswordValidation();
-
-            var errorMessage = string.Empty;
-            var result = passwordValidation.CheckConditions("hk2dddya7zs", ref errorMessage);
-
-            errorMessage.Should().Be("Password must contain at least one capital letter");
-            result.Should().Be(false);
-        }
-
-        [Test]
-        public void get_error_message_and_false_when_password_not_contains_a_capital_letter_with_other_more_string()
-        {
-            var passwordValidation = new PasswordValidation();
-
-            var errorMessage = string.Empty;
-            var result = passwordValidation.CheckConditions("gbaf6hja9lkahjabva", ref errorMessage);
-
-            errorMessage.Should().Be("Password must contain at least one capital letter");
-            result.Should().Be(false);
-        }
-
     }
 }
