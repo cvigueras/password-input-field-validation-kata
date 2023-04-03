@@ -1,4 +1,5 @@
 using FluentAssertions;
+using PasswordInput.Console;
 
 namespace PasswordInput.Test
 {
@@ -18,21 +19,6 @@ namespace PasswordInput.Test
 
             errorMessage.Should().Be("Password must be at least 8 characters");
             result.Should().Be(false);
-        }
-    }
-
-    public class PasswordValidation
-    {
-        public bool CheckConditions(string password, out string errorMessage)
-        {
-            errorMessage = string.Empty;
-            if (password == null)
-            {
-                errorMessage = "Password must be at least 8 characters";
-                return false;
-            }
-
-            return true;
         }
     }
 }
