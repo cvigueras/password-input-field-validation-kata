@@ -27,7 +27,7 @@ namespace PasswordInput.Test
         [TestCase("1hjunbvf")]
         [TestCase("hjuytf6a")]
         [TestCase("hgatyfrtt")]
-        public void get_error_message_and_false_when_password_not_contains_two_numbers(string input)
+        public void get_error_message_and_false_when_password_not_contains_two_numbers_capital_letters_or_special_characters(string input)
         {
             var passwordValidation = new PasswordValidation();
 
@@ -41,7 +41,7 @@ namespace PasswordInput.Test
         [TestCase("hgf3ya7nb")]
         [TestCase("hk2dddya7zs")]
         [TestCase("gbaf6hja9lkahjabva")]
-        public void get_error_message_and_false_when_password_not_contains_a_capital_letter(string input)
+        public void get_error_message_and_false_when_password_not_contains_a_capital_letter_or_special_character(string input)
         {
             var passwordValidation = new PasswordValidation();
 
