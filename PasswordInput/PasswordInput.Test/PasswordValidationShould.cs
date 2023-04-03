@@ -22,7 +22,7 @@ namespace PasswordInput.Test
 
             var result = _passwordValidation.CheckConditions(password);
 
-            password.ErrorMessage.Should().Be("Password must be at least 8 characters"+ Environment.NewLine +
+            password.ErrorMessage.Should().Be("Password must be at least 8 characters" + Environment.NewLine +
                                               "The password must contain at least 2 numbers" + Environment.NewLine +
                                               "Password must contain at least one capital letter" + Environment.NewLine + 
                                               "Password must contain at least one special character");

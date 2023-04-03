@@ -4,6 +4,7 @@ namespace PasswordInput.Console;
 
 public class Password
 {
+    private readonly int _minPasswordLength;
     public string Value { get; }
     public string ErrorMessage { get; private set; }
     public bool PasswordIsValid { get; private set; }
@@ -13,6 +14,7 @@ public class Password
         Value = password;
         ErrorMessage = string.Empty;
         PasswordIsValid = true;
+        _minPasswordLength = 8;
     }
 
     public static Password Create(string password)
@@ -28,7 +30,6 @@ public class Password
         return PasswordIsValid;
     }
 
-
     public bool CheckHasCapitalLetter()
     {
         var regex = new Regex("[A-Z]{1,}");
@@ -39,7 +40,7 @@ public class Password
 
     public bool CheckHasLength()
     {
-        if (!string.IsNullOrEmpty(Value) && Value.Length >= 8) return true;
+        if (!string.IsNullOrEmpty(Value) && Value.Length >= _minPasswordLength) return true;
         SetErrorMessage(ErrorMessages.NotValidLength);
         return PasswordIsValid;
     }
@@ -52,14 +53,9 @@ public class Password
         return PasswordIsValid;
     }
 
-    private void SetPasswordIsValid()
-    {
-        PasswordIsValid = false;
-    }
-
     private void SetErrorMessage(string errorMessage)
     {
-        SetPasswordIsValid();
+        PasswordIsValid = false;
         if (!string.IsNullOrEmpty(ErrorMessage))
         {
             ErrorMessage += Environment.NewLine;
