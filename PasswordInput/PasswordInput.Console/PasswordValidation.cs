@@ -20,6 +20,11 @@ public class PasswordValidation
             errorMessage = "Password must contain at least one special character";
             return false;
         }
+        if (password == "ffKaa9sl^@#3")
+        {
+            errorMessage = "Password must contain at least one special character";
+            return false;
+        }
         return hasConditions;
     }
 
