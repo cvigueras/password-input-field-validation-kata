@@ -33,7 +33,7 @@ namespace PasswordInput.Test
         }
 
         [Test]
-        public void get_error_message_and_false_when_password_is_les_than_eight_character()
+        public void get_error_message_and_false_when_password_is_less_than_eight_character()
         {
             var passwordValidation = new PasswordValidation();
 
