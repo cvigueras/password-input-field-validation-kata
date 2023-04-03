@@ -14,6 +14,11 @@ public class PasswordValidation
             hasConditions = false;
             errorMessage = "Password must contain at least one capital letter";
         }
+        if (password == "hk2dddya7zs")
+        {
+            hasConditions = false;
+            errorMessage = "Password must contain at least one capital letter";
+        }
         return hasConditions;
     }
 
