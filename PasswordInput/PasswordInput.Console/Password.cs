@@ -3,7 +3,7 @@ namespace PasswordInput.Console;
 public class Password
 {
     public string Value { get; }
-    public string ErrorMessage { get; }
+    public string ErrorMessage { get; private set; }
     private Password(string password)
     {
         Value = password;
@@ -15,4 +15,13 @@ public class Password
         return new Password(password);
     }
 
+    public void SetErrorMessage(string errorMessage)
+    {
+        if (!string.IsNullOrEmpty(ErrorMessage))
+        {
+            ErrorMessage += "\n";
+        }
+
+        ErrorMessage += errorMessage;
+    }
 }

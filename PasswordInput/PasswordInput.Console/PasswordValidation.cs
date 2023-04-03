@@ -19,11 +19,7 @@ public class PasswordValidation
         var regex = new Regex("[^a-zA-Z0-9]{1,}");
         if (string.IsNullOrEmpty(password.Value) || !regex.IsMatch(password.Value))
         {
-            if (!string.IsNullOrEmpty(errorMessage))
-            {
-                errorMessage += "\n";
-            }
-            errorMessage += "Password must contain at least one special character";
+            password.SetErrorMessage("Password must contain at least one special character");
             return false;
         }
         return true;
@@ -34,11 +30,7 @@ public class PasswordValidation
         var regex = new Regex("[A-Z]{1,}");
         if (string.IsNullOrEmpty(password.Value) || !regex.IsMatch(password.Value))
         {
-            if (!string.IsNullOrEmpty(errorMessage))
-            {
-                errorMessage += "\n";
-            }
-            errorMessage += "Password must contain at least one capital letter";
+            password.SetErrorMessage("Password must contain at least one capital letter");
             return false;
         }
         return true;
@@ -48,7 +40,7 @@ public class PasswordValidation
     {
         if (string.IsNullOrEmpty(password.Value) || password.Value.Length < 8)
         {
-            errorMessage = "Password must be at least 8 characters";
+            password.SetErrorMessage("Password must be at least 8 characters");
             return false;
         }
         return true;
@@ -59,11 +51,7 @@ public class PasswordValidation
         var regex = new Regex(@"(\D*\d){2,}");
         if (string.IsNullOrEmpty(password.Value) || !regex.IsMatch(password.Value))
         {
-            if (!string.IsNullOrEmpty(errorMessage))
-            {
-                errorMessage += "\n";
-            }
-            errorMessage += "The password must contain at least 2 numbers";
+            password.SetErrorMessage("The password must contain at least 2 numbers");
             return false;
 
         }
