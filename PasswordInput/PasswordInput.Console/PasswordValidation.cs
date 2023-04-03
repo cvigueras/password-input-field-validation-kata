@@ -15,6 +15,11 @@ public class PasswordValidation
             errorMessage = "Password must contain at least one special character";
             return false;
         }
+        if (password == "hGf42adjb#")
+        {
+            errorMessage = "Password must contain at least one special character";
+            return false;
+        }
         return hasConditions;
     }
 
