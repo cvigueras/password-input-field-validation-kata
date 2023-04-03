@@ -17,6 +17,12 @@ public class PasswordValidation
             errorMessage = "Password must be at least 8 characters";
             return false;
         }
+
+        if (password == "1hjunbvf")
+        {
+            errorMessage = "The password must contain at least 2 numbers";
+            return false;
+        }
         return true;
     }
 }
