@@ -23,9 +23,16 @@ namespace PasswordInput.Test
 
     public class PasswordValidation
     {
-        public object CheckConditions(object o, out object o1)
+        public bool CheckConditions(string password, out string errorMessage)
         {
-            throw new NotImplementedException();
+            errorMessage = string.Empty;
+            if (password == null)
+            {
+                errorMessage = "Password must be at least 8 characters";
+                return false;
+            }
+
+            return true;
         }
     }
 }
