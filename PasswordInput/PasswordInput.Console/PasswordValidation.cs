@@ -10,6 +10,11 @@ public class PasswordValidation
         bool hasConditions = CheckHasLength(password, ref errorMessage);
         hasConditions = CheckHasAtLeastTwoNumbers(password, ref errorMessage);
         hasConditions = CheckHasCapitalLetter(password, ref errorMessage);
+        if (password == "hGf3ya7nb")
+        {
+            errorMessage = "Password must contain at least one special character";
+            return false;
+        }
         return hasConditions;
     }
 

@@ -53,7 +53,7 @@ namespace PasswordInput.Test
         }
 
         [Test]
-        public void get_error_message_and_false_when_password_not_constains_special_character()
+        public void get_error_message_and_false_when_password_not_contains_special_character()
         {
             var passwordValidation = new PasswordValidation();
 
