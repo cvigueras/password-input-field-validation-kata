@@ -37,5 +37,18 @@ namespace PasswordInput.Test
             errorMessage.Should().Be("The password must contain at least 2 numbers");
             result.Should().Be(false);
         }
+
+        [Test]
+        public void get_error_message_and_false_when_password_not_contains_a_capital_letter()
+        {
+            var passwordValidation = new PasswordValidation();
+
+            var errorMessage = string.Empty;
+            var result = passwordValidation.CheckConditions("hgf3ya7nb", ref errorMessage);
+
+            errorMessage.Should().Be("Password must contain at least one capital letter");
+            result.Should().Be(false);
+        }
+
     }
 }
