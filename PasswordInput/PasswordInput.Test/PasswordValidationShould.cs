@@ -20,5 +20,16 @@ namespace PasswordInput.Test
             errorMessage.Should().Be("Password must be at least 8 characters");
             result.Should().Be(false);
         }
+
+        [Test]
+        public void get_error_message_and_false_when_password_is_empty()
+        {
+            var passwordValidation = new PasswordValidation();
+
+            var result = passwordValidation.CheckConditions(string.Empty, out var errorMessage);
+
+            errorMessage.Should().Be("Password must be at least 8 characters");
+            result.Should().Be(false);
+        }
     }
 }
