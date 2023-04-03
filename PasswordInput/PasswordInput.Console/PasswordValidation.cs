@@ -4,20 +4,20 @@ namespace PasswordInput.Console;
 
 public class PasswordValidation
 {
-    public bool CheckConditions(string password, ref string errorMessage)
+    public bool CheckConditions(Password password, ref string errorMessage)
     {
         errorMessage = string.Empty;
-        bool hasConditions = CheckHasLength(password, ref errorMessage);
-        hasConditions = CheckHasAtLeastTwoNumbers(password, ref errorMessage);
-        hasConditions = CheckHasCapitalLetter(password, ref errorMessage);
-        hasConditions = CheckHasEspecialCharacter(password, ref errorMessage);
+        bool hasConditions = CheckHasLength(ref errorMessage, password);
+        hasConditions = CheckHasAtLeastTwoNumbers(ref errorMessage, password);
+        hasConditions = CheckHasCapitalLetter(ref errorMessage, password);
+        hasConditions = CheckHasEspecialCharacter(ref errorMessage, password);
         return hasConditions;
     }
 
-    private static bool CheckHasEspecialCharacter(string password, ref string errorMessage)
+    private static bool CheckHasEspecialCharacter(ref string errorMessage, Password password)
     {
         var regex = new Regex("[^a-zA-Z0-9]{1,}");
-        if (string.IsNullOrEmpty(password) || !regex.IsMatch(password))
+        if (string.IsNullOrEmpty(password.Value) || !regex.IsMatch(password.Value))
         {
             if (!string.IsNullOrEmpty(errorMessage))
             {
@@ -29,10 +29,10 @@ public class PasswordValidation
         return true;
     }
 
-    private static bool CheckHasCapitalLetter(string password, ref string errorMessage)
+    private static bool CheckHasCapitalLetter(ref string errorMessage, Password password)
     {
         var regex = new Regex("[A-Z]{1,}");
-        if (string.IsNullOrEmpty(password) || !regex.IsMatch(password))
+        if (string.IsNullOrEmpty(password.Value) || !regex.IsMatch(password.Value))
         {
             if (!string.IsNullOrEmpty(errorMessage))
             {
@@ -44,9 +44,9 @@ public class PasswordValidation
         return true;
     }
 
-    private static bool CheckHasLength(string password, ref string errorMessage)
+    private static bool CheckHasLength(ref string errorMessage, Password password)
     {
-        if (string.IsNullOrEmpty(password) || password.Length < 8)
+        if (string.IsNullOrEmpty(password.Value) || password.Value.Length < 8)
         {
             errorMessage = "Password must be at least 8 characters";
             return false;
@@ -54,10 +54,10 @@ public class PasswordValidation
         return true;
     }
 
-    private static bool CheckHasAtLeastTwoNumbers(string password, ref string errorMessage)
+    private static bool CheckHasAtLeastTwoNumbers(ref string errorMessage, Password password)
     {
         var regex = new Regex(@"(\D*\d){2,}");
-        if (string.IsNullOrEmpty(password) || !regex.IsMatch(password))
+        if (string.IsNullOrEmpty(password.Value) || !regex.IsMatch(password.Value))
         {
             if (!string.IsNullOrEmpty(errorMessage))
             {
