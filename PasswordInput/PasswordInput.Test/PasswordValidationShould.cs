@@ -22,7 +22,11 @@ namespace PasswordInput.Test
 
             var result = _passwordValidation.CheckConditions(password);
 
-            password.ErrorMessage.Should().Be("Password must be at least 8 characters\nThe password must contain at least 2 numbers\nPassword must contain at least one capital letter\nPassword must contain at least one special character");
+            password.ErrorMessage.Should().Be("Password must be at least 8 characters"+ Environment.NewLine +
+                                              "The password must contain at least 2 numbers" + Environment.NewLine +
+                                              "Password must contain at least one capital letter" + Environment.NewLine + 
+                                              "Password must contain at least one special character");
+
             password.PasswordIsValid.Should().Be(false);
         }
 
@@ -35,7 +39,10 @@ namespace PasswordInput.Test
 
             var result = _passwordValidation.CheckConditions(password);
 
-            password.ErrorMessage.Should().Be("The password must contain at least 2 numbers\nPassword must contain at least one capital letter\nPassword must contain at least one special character");
+            password.ErrorMessage.Should().Be("The password must contain at least 2 numbers" + Environment.NewLine + 
+                                              "Password must contain at least one capital letter" + Environment.NewLine + 
+                                              "Password must contain at least one special character");
+
             password.PasswordIsValid.Should().Be(false);
         }
 
@@ -48,7 +55,9 @@ namespace PasswordInput.Test
 
             var result = _passwordValidation.CheckConditions(password);
 
-            password.ErrorMessage.Should().Be("Password must contain at least one capital letter\nPassword must contain at least one special character");
+            password.ErrorMessage.Should().Be("Password must contain at least one capital letter" + Environment.NewLine + 
+                                              "Password must contain at least one special character");
+
             password.PasswordIsValid.Should().Be(false);
         }
 
@@ -62,6 +71,7 @@ namespace PasswordInput.Test
             var result = _passwordValidation.CheckConditions(password);
 
             password.ErrorMessage.Should().Be("Password must contain at least one special character");
+
             password.PasswordIsValid.Should().Be(false);
         }
 

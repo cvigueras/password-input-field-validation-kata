@@ -24,43 +24,45 @@ public class Password
     {
         var regex = new Regex("[^a-zA-Z0-9]{1,}");
         if (!string.IsNullOrEmpty(Value) && regex.IsMatch(Value)) return true;
-        SetErrorMessage("Password must contain at least one special character");
-        return false;
+        SetErrorMessage(ErrorMessages.NotSpecialCharacters);
+        return PasswordIsValid;
     }
+
 
     public bool CheckHasCapitalLetter()
     {
         var regex = new Regex("[A-Z]{1,}");
         if (!string.IsNullOrEmpty(Value) && regex.IsMatch(Value)) return true;
-        SetErrorMessage("Password must contain at least one capital letter");
-        return false;
+        SetErrorMessage(ErrorMessages.NoCapitalLetters);
+        return PasswordIsValid;
     }
 
     public bool CheckHasLength()
     {
         if (!string.IsNullOrEmpty(Value) && Value.Length >= 8) return true;
-        SetErrorMessage("Password must be at least 8 characters");
-        return false;
+        SetErrorMessage(ErrorMessages.NotValidLength);
+        return PasswordIsValid;
     }
 
     public bool CheckHasAtLeastTwoNumbers()
     {
         var regex = new Regex(@"(\D*\d){2,}");
         if (!string.IsNullOrEmpty(Value) && regex.IsMatch(Value)) return true;
-        SetErrorMessage("The password must contain at least 2 numbers");
-        return false;
+        SetErrorMessage(ErrorMessages.NotContainsTwoDigit);
+        return PasswordIsValid;
     }
 
     private void SetPasswordIsValid()
     {
         PasswordIsValid = false;
     }
+
     private void SetErrorMessage(string errorMessage)
     {
         SetPasswordIsValid();
         if (!string.IsNullOrEmpty(ErrorMessage))
         {
-            ErrorMessage += "\n";
+            ErrorMessage += Environment.NewLine;
         }
         
         ErrorMessage += errorMessage;
