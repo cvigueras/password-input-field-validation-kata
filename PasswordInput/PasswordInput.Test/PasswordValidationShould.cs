@@ -53,5 +53,16 @@ namespace PasswordInput.Test
             errorMessage.Should().Be("The password must contain at least 2 numbers");
             result.Should().Be(false);
         }
+
+        [Test]
+        public void get_error_message_and_false_when_password_not_contains_two_numbers_with_other_string()
+        {
+            var passwordValidation = new PasswordValidation();
+
+            var result = passwordValidation.CheckConditions("hjuytf6a", out var errorMessage);
+
+            errorMessage.Should().Be("The password must contain at least 2 numbers");
+            result.Should().Be(false);
+        }
     }
 }
