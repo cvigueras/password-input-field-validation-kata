@@ -20,7 +20,7 @@ namespace PasswordInput.Test
             var errorMessage = string.Empty;
             var result = passwordValidation.CheckConditions(input, ref errorMessage);
 
-            errorMessage.Should().Be("Password must be at least 8 characters\nThe password must contain at least 2 numbers");
+            errorMessage.Should().Be("Password must be at least 8 characters\nThe password must contain at least 2 numbers\nPassword must contain at least one capital letter");
             result.Should().Be(false);
         }
 
@@ -34,7 +34,7 @@ namespace PasswordInput.Test
             var errorMessage = string.Empty;
             var result = passwordValidation.CheckConditions(input, ref errorMessage);
 
-            errorMessage.Should().Be("The password must contain at least 2 numbers");
+            errorMessage.Should().Be("The password must contain at least 2 numbers\nPassword must contain at least one capital letter");
             result.Should().Be(false);
         }
 

@@ -9,22 +9,23 @@ public class PasswordValidation
         errorMessage = string.Empty;
         bool hasConditions = CheckHasLength(password, ref errorMessage);
         hasConditions = CheckHasAtLeastTwoNumbers(password, ref errorMessage);
-        if (password == "hgf3ya7nb")
-        {
-            hasConditions = false;
-            errorMessage = "Password must contain at least one capital letter";
-        }
-        if (password == "hk2dddya7zs")
-        {
-            hasConditions = false;
-            errorMessage = "Password must contain at least one capital letter";
-        }
-        if (password == "gbaf6hja9lkahjabva")
-        {
-            hasConditions = false;
-            errorMessage = "Password must contain at least one capital letter";
-        }
+        hasConditions = CheckHasCapitalLetter(password, ref errorMessage);
         return hasConditions;
+    }
+
+    private static bool CheckHasCapitalLetter(string password, ref string errorMessage)
+    {
+        var regex = new Regex("[A-Z]{1,}");
+        if (string.IsNullOrEmpty(password) || !regex.IsMatch(password))
+        {
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                errorMessage += "\n";
+            }
+            errorMessage += "Password must contain at least one capital letter";
+            return false;
+        }
+        return true;
     }
 
     private static bool CheckHasLength(string password, ref string errorMessage)
