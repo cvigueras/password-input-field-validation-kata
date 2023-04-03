@@ -10,67 +10,27 @@ namespace PasswordInput.Test
         {
         }
 
-        [Test]
-        public void get_error_message_and_false_when_password_is_null()
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase("abcd")]
+        public void get_error_message_and_false_when_password_is_less_than_eight_character(string input)
         {
             var passwordValidation = new PasswordValidation();
 
-            var result = passwordValidation.CheckConditions(null, out var errorMessage);
+            var result = passwordValidation.CheckConditions(input, out var errorMessage);
 
             errorMessage.Should().Be("Password must be at least 8 characters");
             result.Should().Be(false);
         }
 
-        [Test]
-        public void get_error_message_and_false_when_password_is_empty()
+        [TestCase("1hjunbvf")]
+        [TestCase("hjuytf6a")]
+        [TestCase("hgatyfrtt")]
+        public void get_error_message_and_false_when_password_not_contains_two_numbers(string input)
         {
             var passwordValidation = new PasswordValidation();
 
-            var result = passwordValidation.CheckConditions(string.Empty, out var errorMessage);
-
-            errorMessage.Should().Be("Password must be at least 8 characters");
-            result.Should().Be(false);
-        }
-
-        [Test]
-        public void get_error_message_and_false_when_password_is_less_than_eight_character()
-        {
-            var passwordValidation = new PasswordValidation();
-
-            var result = passwordValidation.CheckConditions("abcd", out var errorMessage);
-
-            errorMessage.Should().Be("Password must be at least 8 characters");
-            result.Should().Be(false);
-        }
-
-        [Test]
-        public void get_error_message_and_false_when_password_not_contains_two_numbers()
-        {
-            var passwordValidation = new PasswordValidation();
-
-            var result = passwordValidation.CheckConditions("1hjunbvf", out var errorMessage);
-
-            errorMessage.Should().Be("The password must contain at least 2 numbers");
-            result.Should().Be(false);
-        }
-
-        [Test]
-        public void get_error_message_and_false_when_password_not_contains_two_numbers_with_other_string()
-        {
-            var passwordValidation = new PasswordValidation();
-
-            var result = passwordValidation.CheckConditions("hjuytf6a", out var errorMessage);
-
-            errorMessage.Should().Be("The password must contain at least 2 numbers");
-            result.Should().Be(false);
-        }
-
-        [Test]
-        public void get_error_message_and_false_when_password_not_contains_two_numbers_with_other_more_string()
-        {
-            var passwordValidation = new PasswordValidation();
-
-            var result = passwordValidation.CheckConditions("hgatyfrtt", out var errorMessage);
+            var result = passwordValidation.CheckConditions(input, out var errorMessage);
 
             errorMessage.Should().Be("The password must contain at least 2 numbers");
             result.Should().Be(false);
