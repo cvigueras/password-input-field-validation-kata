@@ -51,5 +51,17 @@ namespace PasswordInput.Test
             errorMessage.Should().Be("Password must contain at least one capital letter");
             result.Should().Be(false);
         }
+
+        [Test]
+        public void get_error_message_and_false_when_password_not_constains_special_character()
+        {
+            var passwordValidation = new PasswordValidation();
+
+            var errorMessage = string.Empty;
+            var result = passwordValidation.CheckConditions("hGf3ya7nb", ref errorMessage);
+
+            errorMessage.Should().Be("Password must contain at least one special character");
+            result.Should().Be(false);
+        }
     }
 }
