@@ -18,13 +18,12 @@ namespace PasswordInput.Test
         [TestCase("abcd")]
         public void get_all_errors_messages_when_does_not_meet_any_condition(string input)
         {
-            var errorMessage = string.Empty;
             var password = Password.Create(input);
 
-            var result = _passwordValidation.CheckConditions(password, ref errorMessage);
+            var result = _passwordValidation.CheckConditions(password);
 
             password.ErrorMessage.Should().Be("Password must be at least 8 characters\nThe password must contain at least 2 numbers\nPassword must contain at least one capital letter\nPassword must contain at least one special character");
-            result.Should().Be(false);
+            password.PasswordIsValid.Should().Be(false);
         }
 
         [TestCase("1hjunbvf")]
@@ -32,13 +31,12 @@ namespace PasswordInput.Test
         [TestCase("hgatyfrtt")]
         public void get_error_message_and_false_when_password_not_contains_two_numbers_capital_letters_or_special_characters(string input)
         {
-            var errorMessage = string.Empty;
             var password = Password.Create(input);
 
-            var result = _passwordValidation.CheckConditions(password, ref errorMessage);
+            var result = _passwordValidation.CheckConditions(password);
 
             password.ErrorMessage.Should().Be("The password must contain at least 2 numbers\nPassword must contain at least one capital letter\nPassword must contain at least one special character");
-            result.Should().Be(false);
+            password.PasswordIsValid.Should().Be(false);
         }
 
         [TestCase("hgf3ya7nb")]
@@ -46,13 +44,12 @@ namespace PasswordInput.Test
         [TestCase("gbaf6hja9lkahjabva")]
         public void get_error_message_and_false_when_password_not_contains_a_capital_letter_or_special_character(string input)
         {
-            var errorMessage = string.Empty;
             var password = Password.Create(input);
 
-            var result = _passwordValidation.CheckConditions(password, ref errorMessage);
+            var result = _passwordValidation.CheckConditions(password);
 
             password.ErrorMessage.Should().Be("Password must contain at least one capital letter\nPassword must contain at least one special character");
-            result.Should().Be(false);
+            password.PasswordIsValid.Should().Be(false);
         }
 
         [TestCase("hGf3ya7nb")]
@@ -60,13 +57,12 @@ namespace PasswordInput.Test
         [TestCase("ffKaa9sl3")]
         public void get_error_message_and_false_when_password_not_contains_special_character(string input)
         {
-            var errorMessage = string.Empty;
             var password = Password.Create(input);
 
-            var result = _passwordValidation.CheckConditions(password, ref errorMessage);
+            var result = _passwordValidation.CheckConditions(password);
 
             password.ErrorMessage.Should().Be("Password must contain at least one special character");
-            result.Should().Be(false);
+            password.PasswordIsValid.Should().Be(false);
         }
 
         [TestCase("Hola33Comoestas^")]
@@ -75,13 +71,12 @@ namespace PasswordInput.Test
         [TestCase("hyT90kL##77k3@")]
         public void get_error_message_empty_when_password_achieve_all_conditions(string input)
         {
-            var errorMessage = string.Empty;
             var password = Password.Create(input);
 
-            var result = _passwordValidation.CheckConditions(password, ref errorMessage);
+            var result = _passwordValidation.CheckConditions(password);
 
             password.ErrorMessage.Should().Be("");
-            result.Should().Be(true);
+            password.PasswordIsValid.Should().Be(true);
         }
     }
 }
