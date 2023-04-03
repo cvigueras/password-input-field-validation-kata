@@ -20,18 +20,6 @@ public class Password
         return new Password(password);
     }
 
-    public void SetErrorMessage(string errorMessage)
-    {
-        SetPasswordIsValid();
-        if (!string.IsNullOrEmpty(ErrorMessage))
-        {
-            ErrorMessage += "\n";
-        }
-        
-        ErrorMessage += errorMessage;
-    }
-
-
     public bool CheckHasEspecialCharacter()
     {
         var regex = new Regex("[^a-zA-Z0-9]{1,}");
@@ -62,8 +50,19 @@ public class Password
         SetErrorMessage("The password must contain at least 2 numbers");
         return false;
     }
+
     private void SetPasswordIsValid()
     {
         PasswordIsValid = false;
+    }
+    private void SetErrorMessage(string errorMessage)
+    {
+        SetPasswordIsValid();
+        if (!string.IsNullOrEmpty(ErrorMessage))
+        {
+            ErrorMessage += "\n";
+        }
+        
+        ErrorMessage += errorMessage;
     }
 }
