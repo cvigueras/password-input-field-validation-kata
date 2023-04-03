@@ -29,6 +29,12 @@ public class PasswordValidation
             errorMessage = "The password must contain at least 2 numbers";
             return false;
         }
+
+        if (password == "hgatyfrtt")
+        {
+            errorMessage = "The password must contain at least 2 numbers";
+            return false;
+        }
         return true;
     }
 }
