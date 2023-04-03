@@ -1,3 +1,5 @@
+using System.Text.RegularExpressions;
+
 namespace PasswordInput.Console;
 
 public class PasswordValidation
@@ -11,6 +13,14 @@ public class PasswordValidation
 
     private static bool CheckLength(string password, out string errorMessage)
     {
+        if (!CheckHasLength(password, out errorMessage)) return false;
+
+        if (!CheckHasAtLeastTwoNumbers(password, out errorMessage)) return false;
+        return true;
+    }
+
+    private static bool CheckHasLength(string password, out string errorMessage)
+    {
         errorMessage = string.Empty;
         if (string.IsNullOrEmpty(password) || password.Length < 8)
         {
@@ -18,22 +28,18 @@ public class PasswordValidation
             return false;
         }
 
-        if (password == "1hjunbvf")
-        {
-            errorMessage = "The password must contain at least 2 numbers";
-            return false;
-        }
+        return true;
+    }
 
-        if (password == "hjuytf6a")
+    private static bool CheckHasAtLeastTwoNumbers(string password, out string errorMessage)
+    {
+        errorMessage = string.Empty;
+        var regex = new Regex("^(?=(?:\\D*\\d){2})[a-zA-Z0-9]*$");
+        if (!regex.IsMatch(password))
         {
             errorMessage = "The password must contain at least 2 numbers";
             return false;
-        }
 
-        if (password == "hgatyfrtt")
-        {
-            errorMessage = "The password must contain at least 2 numbers";
-            return false;
         }
         return true;
     }
