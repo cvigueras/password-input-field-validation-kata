@@ -8,32 +8,33 @@ public class Password
     public string Value { get; }
     public string ErrorMessage { get; private set; }
     public bool PasswordIsValid { get; private set; }
+    private string Expression { get; set; }
 
-    private Password(string password)
+    private Password(string value)
     {
-        Value = password;
+        Value = value;
         ErrorMessage = string.Empty;
         PasswordIsValid = true;
         _minPasswordLength = 8;
     }
 
-    public static Password Create(string password)
+    public static Password Create(string value)
     {
-        return new Password(password);
+        return new Password(value);
     }
 
     public bool CheckHasEspecialCharacter()
     {
-        var regex = new Regex(RegexExpressions.RegexSpecialCharacters);
-        if (!string.IsNullOrEmpty(Value) && regex.IsMatch(Value)) return true;
+        Expression = RegexExpressions.RegexSpecialCharacters;
+        if (Validate()) return true;
         SetErrorMessage(ErrorMessages.NotSpecialCharacters);
         return PasswordIsValid;
     }
 
     public bool CheckHasCapitalLetter()
     {
-        var regex = new Regex(RegexExpressions.RegexCapitalLetter);
-        if (!string.IsNullOrEmpty(Value) && regex.IsMatch(Value)) return true;
+        Expression = RegexExpressions.RegexCapitalLetter;
+        if (Validate()) return true;
         SetErrorMessage(ErrorMessages.NoCapitalLetters);
         return PasswordIsValid;
     }
@@ -47,8 +48,8 @@ public class Password
 
     public bool CheckHasAtLeastTwoNumbers()
     {
-        var regex = new Regex(RegexExpressions.RegexTwoNumbers);
-        if (!string.IsNullOrEmpty(Value) && regex.IsMatch(Value)) return true;
+        Expression = RegexExpressions.RegexTwoNumbers;
+        if (Validate()) return true;
         SetErrorMessage(ErrorMessages.NotContainsTwoDigit);
         return PasswordIsValid;
     }
@@ -62,5 +63,11 @@ public class Password
         }
         
         ErrorMessage += errorMessage;
+    }
+
+    private bool Validate()
+    {
+        var regex = new Regex(Expression);
+        return !string.IsNullOrEmpty(Value) && regex.IsMatch(Value);
     }
 }

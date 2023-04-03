@@ -20,7 +20,7 @@ namespace PasswordInput.Test
         {
             var password = Password.Create(input);
 
-            var result = _passwordValidation.CheckConditions(password);
+            _passwordValidation.CheckConditions(password);
 
             password.ErrorMessage.Should().Be("Password must be at least 8 characters" + Environment.NewLine +
                                               "The password must contain at least 2 numbers" + Environment.NewLine +
@@ -37,7 +37,7 @@ namespace PasswordInput.Test
         {
             var password = Password.Create(input);
 
-            var result = _passwordValidation.CheckConditions(password);
+            _passwordValidation.CheckConditions(password);
 
             password.ErrorMessage.Should().Be("The password must contain at least 2 numbers" + Environment.NewLine + 
                                               "Password must contain at least one capital letter" + Environment.NewLine + 
@@ -53,7 +53,7 @@ namespace PasswordInput.Test
         {
             var password = Password.Create(input);
 
-            var result = _passwordValidation.CheckConditions(password);
+            _passwordValidation.CheckConditions(password);
 
             password.ErrorMessage.Should().Be("Password must contain at least one capital letter" + Environment.NewLine + 
                                               "Password must contain at least one special character");
@@ -68,7 +68,7 @@ namespace PasswordInput.Test
         {
             var password = Password.Create(input);
 
-            var result = _passwordValidation.CheckConditions(password);
+            _passwordValidation.CheckConditions(password);
 
             password.ErrorMessage.Should().Be("Password must contain at least one special character");
 
@@ -83,7 +83,7 @@ namespace PasswordInput.Test
         {
             var password = Password.Create(input);
 
-            var result = _passwordValidation.CheckConditions(password);
+            _passwordValidation.CheckConditions(password);
 
             password.ErrorMessage.Should().Be("");
             password.PasswordIsValid.Should().Be(true);
